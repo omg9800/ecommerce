@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/navbar";
 import Cart from "../Cart/cart";
 import "./product.css";
