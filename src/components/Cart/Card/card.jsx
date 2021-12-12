@@ -4,17 +4,9 @@ import { Link } from "react-router-dom";
 import "./card.css";
 
 const Card = (props) => {
-  let {
-    title,
-    description,
-    price,
-    rating,
-    image,
-    category,
-    size,
-    id,
-    updateItems,
-  } = props.product;
+  let { title, description, price, rating, image, category, size, id } =
+    props.product;
+  const { updateItems } = props;
   image = image[0];
   const [isHovering, setIsHovering] = useState(false);
   const [qty, setQty] = useState([1, 2, 3, 4, 5]);

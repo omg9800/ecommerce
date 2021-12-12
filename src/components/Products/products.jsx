@@ -10,21 +10,21 @@ const Products = ({ products, setProducts }) => {
     setNewProducts(products);
     console.log(products);
   }, [products]);
-
+  console.log(products, "hello");
   return (
     <>
       <div className="products-container">
         <div className="sort-container">
-          <Sort setProducts={setProducts} />
+          <Sort setProducts={setProducts} products={products} />
         </div>
         <div className="products">
           {products.map((m, i) => {
             const key = m.title + m.id;
             console.log(key);
             return (
-              <div key={key}>
-                <Card product={m} />
-              </div>
+              // <div key={key.toString()}>
+              <Card product={m} />
+              // </div>
             );
           })}
         </div>

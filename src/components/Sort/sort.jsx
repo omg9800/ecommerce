@@ -1,21 +1,20 @@
 import React, { Component, useEffect, useState } from "react";
 import "./sort.css";
-const Sort = ({ setProducts }) => {
+const Sort = ({ setProducts, products }) => {
   const handleSort = (e) => {
     let type = e.target.value;
 
+    const tProds = [...products];
     if (type == "dec") {
-      setProducts((products) =>
-        products.sort((a, b) => {
-          return b.price - a.price;
-        })
-      );
+      tProds.sort((a, b) => {
+        return b.price - a.price;
+      });
+      setProducts(tProds);
     } else if (type == "inc") {
-      setProducts((products) =>
-        products.sort((a, b) => {
-          return a.price - b.price;
-        })
-      );
+      tProds.sort((a, b) => {
+        return a.price - b.price;
+      });
+      setProducts(tProds);
     }
   };
 

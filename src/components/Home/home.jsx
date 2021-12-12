@@ -8,10 +8,10 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [allProds, setAllProds] = useState([]);
 
-  const [flag, setFlag] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:6400/products")
+    fetch("https://ecommerce-980.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -20,12 +20,19 @@ const Home = () => {
       });
   }, []);
 
+  useEffect(async () => {
+    let k = await localStorage.getItem("products");
+    k = JSON.parse(k).length;
+    setCount(k);
+  }, []);
+
   return (
     <>
       <Navbar
         products={products}
         setProducts={setProducts}
         allProds={allProds}
+        count={count}
       />
       <div className="home-container">
         <div className="sidebar">
@@ -33,7 +40,7 @@ const Home = () => {
             products={products}
             setProducts={setProducts}
             allProds={allProds}
-            setFlag={setFlag}
+            // setFlag={setFlag}
           />
         </div>
         <div className="products">

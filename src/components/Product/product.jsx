@@ -7,18 +7,22 @@ import { FaStar } from "react-icons/fa";
 import Rating from "../Helper/helper";
 const Product = (props) => {
   console.log(props);
-  const [product, setProduct] = useState(props.location.state.product);
-  const [successFlag, setSuccessFlag] = useState(false);
+  const [product, setProduct] = useState(props?.location?.state?.product);
   const [failFlag, setFailFlag] = useState(true);
   console.log(product);
   const { image, title, description, size, rating, price } = product;
   const [sz, setsz] = useState("");
-
+  const [cb, setCb] = useState(0);
   const handleOnChange = (e) => {
     console.log(e.target.value);
     setsz(e.target.value);
   };
-  var count = 0;
+
+  useEffect(async () => {
+    let k = await localStorage.getItem("products");
+    k = JSON.parse(k).length;
+    setCb(k);
+  }, []);
 
   const addToBag = async () => {
     product.selectedSize = sz;
@@ -35,22 +39,13 @@ const Product = (props) => {
 
     // let arr = await localStorage.getItem("products");
     // count = JSON.parse(arr).length;
-    count = 1;
+    setCb(cb + 1);
   };
 
   return (
     <>
-      <Navbar
-        setSuccessFlag={setSuccessFlag}
-        successFlag={successFlag}
-        setFailFlag={setFailFlag}
-        count={count}
-      />
-      <Cart
-        successFlag={successFlag}
-        setFailFlag={setFailFlag}
-        setSuccessFlag={setSuccessFlag}
-      />
+      <Navbar count={cb} />
+
       <div className="product-container">
         <div className="prod-img">
           <img src={image} alt="" />

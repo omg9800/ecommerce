@@ -6,17 +6,10 @@ import { MdSearch } from "react-icons/md";
 import { BsFillPersonFill, BsPerson, BsHeart } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
 import Cart from "../Cart/cart";
-const Navbar = ({
-  products,
-  setProducts,
-  allProds,
-  setSuccessFlag,
-  successFlag,
-  setFailFlag,
-  count,
-}) => {
+const Navbar = ({ products, setProducts, allProds, count }) => {
   const [searchText, setSearchText] = useState("");
   const [countBag, setCountBag] = useState(0);
+  const [successFlag, setSuccessFlag] = useState(false);
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);
@@ -31,12 +24,12 @@ const Navbar = ({
     // }
   };
 
-  useEffect(async () => {
-    let products = await localStorage.getItem("products");
-    let count = JSON.parse(products).length;
-    console.log(count);
-    setCountBag(countBag + count);
-  }, [count]);
+  // useEffect(async () => {
+  //   let products = await localStorage.getItem("products");
+  //   let count = JSON.parse(products).length;
+  //   console.log(count);
+  //   setCountBag(countBag + count);
+  // }, [count]);
 
   const listener = (event) => {
     if (event.code === "Enter" || event.code === "NumpadEnter") {
@@ -123,18 +116,14 @@ const Navbar = ({
           </li>
           <li className="li-flex" style={{ position: "relative" }}>
             <BiShoppingBag />
-            <span className="bag-count">{countBag}</span>
+            <span className="bag-count">{count}</span>
             <Link className="link" onClick={openPopup}>
               Bag
             </Link>
           </li>
         </ul>
       </div>
-      <Cart
-        successFlag={successFlag}
-        setFailFlag={setFailFlag}
-        setSuccessFlag={setSuccessFlag}
-      />
+      <Cart successFlag={successFlag} setSuccessFlag={setSuccessFlag} />
     </div>
   );
 };

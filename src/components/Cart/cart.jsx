@@ -3,8 +3,9 @@ import "./cart.css";
 import Card from "./Card/card";
 import { findRenderedComponentWithType } from "react-dom/test-utils";
 
-const Cart = ({ setSuccessFlag, setFailFlag, successFlag }) => {
+const Cart = ({ setSuccessFlag, successFlag }) => {
   const [flag, setFlag] = useState(false);
+  const [arr, setArr] = useState([]);
   //   const [carts, setCarts] = useState([]);
   const closeModal = () => {
     setFlag(false);
@@ -29,36 +30,34 @@ const Cart = ({ setSuccessFlag, setFailFlag, successFlag }) => {
     span.onclick = function () {
       modal.style.display = "none";
       setSuccessFlag(false);
-      setFailFlag(false);
     };
 
     close.onclick = function () {
       modal.style.display = "none";
       setSuccessFlag(false);
-
-      setFailFlag(false);
     };
 
     window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
         setSuccessFlag(false);
-
-        setFailFlag(false);
       }
     };
   });
 
+  useEffect(() => {
+    var temp = localStorage.getItem("products");
+    temp = JSON.parse(temp);
+    setArr(temp);
+  }, []);
+
   const updateItems = async (id) => {
-    // var arr = localStorage.getItem("products");
-    // arr = JSON.parse(arr);
-    let arr = await localStorage.getItem("products");
-    arr = JSON.parse(arr);
-    arr = arr.filter((m) => m.id != id);
-    localStorage.setItem("products", JSON.stringify(arr));
+    let t = await localStorage.getItem("products");
+    t = JSON.parse(t);
+    t = arr.filter((m) => m.id != id);
+    localStorage.setItem("products", JSON.stringify(t));
+    setArr(t);
   };
-  var arr = localStorage.getItem("products");
-  arr = JSON.parse(arr);
 
   return (
     <div
@@ -76,16 +75,12 @@ const Cart = ({ setSuccessFlag, setFailFlag, successFlag }) => {
             {arr.map((m, i) => {
               return (
                 <>
-                  <Card
-                    product={m}
-                    updateItems={updateItems}
-                    // setSuccessFlag={setSuccessFlag}
-                  />
+                  <Card product={m} updateItems={updateItems} />
                 </>
               );
             })}
           </div>
-          {/* updateItems={updateItems} */}
+
           <div
             style={{
               display: "flex",
