@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.product-container {
+  display: flex;
+  margin: 5% 2%;
+}
+
+.prod-img {
+  width: 50%;
+  height: 80vh;
+  margin-right: 5%;
+}
+
+.prod-img > img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.prod-details {
+  width: 45%;
+}
+
+.title-with-rating {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d9dade;
+}
+
+.prod-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.prod-desc {
+  font-size: 1.25rem;
+  color: #757884;
+}
+
+.rating {
+  width: 200px;
+  margin-top: 10px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid #d9dade;
+}
+
+.star-num {
+  font-weight: 500;
+  margin-right: 2px;
+}
+.star-img {
+  color: #1bb1b0;
+  font-size: 0.8rem;
+}
+
+.divide {
+  margin-left: 10px;
+  color: #757884;
+}
+
+.count {
+  margin-left: 20px;
+  color: #757884;
+}
+.price {
+  margin-top: 20px;
+}
+
+.price > span {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.tax {
+  color: #1bb1b0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.size-heading {
+  display: flex;
+  margin-top: 30px;
+}
+
+.select {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-right: 20px;
+  color: black;
+}
+.chart {
+  font-size: 1.1rem;
+  color: #ff4271;
+  font-weight: 500;
+}
+
+.select-option {
+  margin-top: 25px;
+}
+.select-option > input {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.btn {
+  display: flex;
+  margin-top: 20px;
+}
+
+.bag > button {
+  display: inline-block;
+  padding: 12px 60px;
+  background-color: #ff4271;
+  margin-right: 40px;
+  border: none;
+}
+
+.wishlist > button {
+  display: inline-block;
+  padding: 12px 60px;
+}

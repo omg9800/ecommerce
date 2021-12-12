@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+.home-container {
+  /* height: 88vh !important;
+  background-color: red;*/
+
+  display: flex;
+}
+/* .sidebar {
+  width: 250px;
+  background-color: grey;
+  height: 100vh;
+  flex-basis: 250px;
+  margin-top: 40px;
+} */
+
+.products {
+  width: 100%;
+}
