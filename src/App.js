@@ -4,7 +4,7 @@ import Products from "./components/Products/products";
 import Navbar from "./components/Navbar/navbar";
 import Home from "./components/Home/home";
 import Product from "./components/Product/product";
-import { Switch, Route } from "react-router";
+import { Switch, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
