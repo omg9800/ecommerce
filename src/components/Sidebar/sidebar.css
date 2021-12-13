@@ -8,14 +8,14 @@
 
 .filter-by-gender {
   padding: 15px;
-  height: 15vh;
+  height: 20vh;
   border-top: 1px solid rgb(216, 211, 211);
   /* border-right: 1px solid rgb(216, 211, 211); */
 }
 
 .filter-by-price {
   padding: 15px;
-  height: 15vh;
+  height: 20vh;
   border-top: 1px solid rgb(216, 211, 211);
   /* border-right: 1px solid rgb(216, 211, 211); */
 }
