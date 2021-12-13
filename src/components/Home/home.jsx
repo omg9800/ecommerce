@@ -23,8 +23,9 @@ const Home = () => {
   }, []);
 
   useEffect(async () => {
-    let k = await localStorage.getItem("products");
-    k = JSON.parse(k).length;
+    let k = 0;
+    k = await localStorage.getItem("products");
+    k = JSON.parse(k)?.length;
     setCount(k);
   }, []);
 
