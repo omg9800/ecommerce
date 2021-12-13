@@ -13,35 +13,28 @@ const Navbar = ({ products, setProducts, allProds, count }) => {
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);
-    // const results = allProds.filter((product) =>
-    //   product.title.toLowerCase().includes(searchText)
-    // );
+    const results = allProds.filter((product) =>
+      product.title.toLowerCase().includes(searchText)
+    );
     // console.log(e);
     // if (e.code === "Enter" || e.code === "NumpadEnter") {
     //   console.log("Enter key was pressed. Run your function.");
     //   e.preventDefault();
-    //   setProducts(results);
+    setProducts(results);
     // }
   };
 
-  // useEffect(async () => {
-  //   let products = await localStorage.getItem("products");
-  //   let count = JSON.parse(products).length;
-  //   console.log(count);
-  //   setCountBag(countBag + count);
-  // }, [count]);
-
-  const listener = (event) => {
-    if (event.code === "Enter" || event.code === "NumpadEnter") {
-      console.log("Enter key was pressed. Run your function.");
-      event.preventDefault();
-      const results = allProds.filter((product) =>
-        product.title.toLowerCase().includes(searchText)
-      );
-      setProducts(results);
-    }
-  };
-  document.addEventListener("keydown", listener);
+  // const listener = (event) => {
+  //   if (event.code === "Enter" || event.code === "NumpadEnter") {
+  //     console.log("Enter key was pressed. Run your function.");
+  //     event.preventDefault();
+  //     const results = allProds.filter((product) =>
+  //       product.title.toLowerCase().includes(searchText)
+  //     );
+  //     setProducts(results);
+  //   }
+  // };
+  // document.addEventListener("keydown", listener);
 
   const openPopup = () => {
     setSuccessFlag(true);
@@ -90,7 +83,7 @@ const Navbar = ({ products, setProducts, allProds, count }) => {
         <input
           className="search"
           type="text"
-          placeholder="Search for products, brands and more"
+          placeholder="Search for product's brand"
           name="search"
           value={searchText}
           onChange={handleSearch}
@@ -108,8 +101,9 @@ const Navbar = ({ products, setProducts, allProds, count }) => {
               Profile
             </Link>
           </li>
-          <li className="li-flex">
+          <li className="li-flex" style={{ position: "relative" }}>
             <BsHeart />
+            <span className="bag-count">{count}</span>
             <Link className="link" to="#">
               Wishlist
             </Link>

@@ -103,15 +103,25 @@
 }
 
 .select-option {
-  margin-top: 25px;
+  display: flex;
+  margin-top: 35px;
+  margin-bottom: 50px;
 }
-.select-option > input {
+.round {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  margin-right: 10px;
+}
+
+/* .select-option > input {
   display: inline-block;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   margin-right: 20px;
-}
+} */
 
 .radio {
   display: flex;
@@ -124,15 +134,39 @@
   margin-top: 20px;
 }
 
-.bag > button {
+.bag {
   display: inline-block;
-  padding: 12px 60px;
+  padding: 15px 70px;
   background-color: #ff4271;
   margin-right: 40px;
   border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.bag > button {
+  background-color: #ff4271;
+  border: none;
+  margin-left: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
 }
 
+.wishlist {
+  background-color: #efefef;
+  padding: 15px 70px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: black;
+}
 .wishlist > button {
-  display: inline-block;
-  padding: 12px 60px;
+  border: none;
+  background-color: #efefef;
+  margin-left: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
 }

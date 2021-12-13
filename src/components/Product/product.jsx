@@ -4,6 +4,8 @@ import Navbar from "../Navbar/navbar";
 import Cart from "../Cart/cart";
 import "./product.css";
 import { FaStar } from "react-icons/fa";
+import { BsHeart } from "react-icons/bs";
+import { BiShoppingBag } from "react-icons/bi";
 import Rating from "../Helper/helper";
 const Product = (props) => {
   console.log(props);
@@ -42,6 +44,27 @@ const Product = (props) => {
     setCb(cb + 1);
   };
 
+  const handleSize = (i) => {
+    setsz(size[i]);
+  };
+
+  // const addToWishlist = async () => {
+  //   let products = [];
+  //   let old = await localStorage.getItem("products");
+  //   if (!old) {
+  //     products.push(product);
+  //     localStorage.setItem("products", JSON.stringify(products));
+  //   } else {
+  //     products = [...JSON.parse(old)];
+  //     products.push(product);
+  //     localStorage.setItem("products", JSON.stringify(products));
+  //   }
+
+  //   // let arr = await localStorage.getItem("products");
+  //   // count = JSON.parse(arr).length;
+  //   setCb(cb + 1);
+  // };
+
   return (
     <>
       <Navbar count={cb} />
@@ -74,21 +97,25 @@ const Product = (props) => {
               <p className="chart">SIZE CHART</p>
             </div>
             <div className="select-option">
-              {size.map((m) => (
+              {size.map((m, i) => (
                 <div className="radio">
-                  <span>{m}</span>
+                  {/* <span>{m}</span>
                   <input
                     type="radio"
                     id="size"
                     name="size"
                     value={m}
                     onChange={handleOnChange}
-                  />{" "}
+                  />{" "} */}
+                  <button className="round" onClick={() => handleSize(i)}>
+                    {m}
+                  </button>
                 </div>
               ))}
             </div>
             <div className="btn">
               <div className="bag">
+                <BiShoppingBag />
                 <button
                   onClick={() => {
                     addToBag();
@@ -98,6 +125,7 @@ const Product = (props) => {
                 </button>
               </div>
               <div className="wishlist">
+                <BsHeart />
                 <button>WISHLIST</button>
               </div>
             </div>

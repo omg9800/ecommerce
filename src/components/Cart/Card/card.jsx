@@ -6,7 +6,16 @@ import "./card.css";
 const Card = (props) => {
   let { title, description, price, rating, image, category, size, id } =
     props.product;
-  const { updateItems } = props;
+  const {
+    updateItems,
+    onChange,
+    selectedQty,
+    selectedSize,
+    handleQty,
+    handleSize,
+  } = props;
+  console.log(props, "props");
+
   image = image[0];
   const [isHovering, setIsHovering] = useState(false);
   const [qty, setQty] = useState([1, 2, 3, 4, 5]);
@@ -15,37 +24,18 @@ const Card = (props) => {
     console.log("useeffect ran");
   }, []);
 
-  const handleHover = (e) => {
-    setIsHovering(true);
-    console.log(isHovering);
-  };
-  const handleSize = () => {};
-
-  const handleLeave = (e) => {
-    setIsHovering(false);
-    console.log(isHovering);
-  };
-
   const removeFromBag = async () => {
     let arr = await localStorage.getItem("products");
     arr = JSON.parse(arr);
     arr = arr.filter((m) => m.id != id);
     localStorage.setItem("products", JSON.stringify(arr));
     // updateItems();
-    // console.log(updateItems);
   };
 
   return (
     <div className="cart-card-container">
       <div className="cart-card-img-container">
-        <img
-          id="cart-card-img"
-          src={image}
-          alt="Card Image"
-          // onMouseOver={handleHover}
-          // onMouseOut={handleLeave}
-          // onClick={handleClick}
-        />
+        <img id="cart-card-img" src={image} alt="Card Image" />
       </div>
 
       <div className="card-details">
@@ -55,26 +45,26 @@ const Card = (props) => {
         <div className="card-select">
           <label>
             Size:
-            <select onchange={handleSize}>
-              {size.map((m, i) => {
-                return (
-                  <>
-                    <span>Size:</span>
-                    <option value={m}>{m}</option>;
-                  </>
-                );
-              })}
+            <select name="size" id="size" onchange={handleSize}>
+              {size.map((m, i) => (
+                <option value={m} key={i + m}>
+                  {m}
+                </option>
+              ))}
             </select>
           </label>
           <label>
             Qty:
-            <select onchange={handleSize}>
-              {qty.map((m, i) => {
-                return <option value={m}>{m}</option>;
-              })}
+            <select onchange={handleQty}>
+              {qty.map((m, i) => (
+                <option value={m} key={i + m}>
+                  {m}
+                </option>
+              ))}
             </select>
           </label>
-          <p className="card-price">Rs. {price}</p>
+          {/* <input type="text" onchange={handleChange} /> */}
+          <p className="card-price">Rs. {selectedQty * price}</p>
         </div>
       </div>
       <div className="remove">

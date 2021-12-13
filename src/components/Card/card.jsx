@@ -12,7 +12,7 @@ const Card = (props) => {
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    console.log("useeffect ran");
+    console.log("useffect ran");
   }, []);
 
   const handleHover = (e) => {
@@ -36,13 +36,12 @@ const Card = (props) => {
 
   const history = useHistory();
   return (
-    <div className="card-container">
+    <div className="card-container" onMouseLeave={handleLeave}>
       <img
         id="card-img"
         src={image}
         alt="Card Image"
         onMouseOver={handleHover}
-        onMouseOut={handleLeave}
         onClick={handleClick}
       />
       <div className="rating-sm">

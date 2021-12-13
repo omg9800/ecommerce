@@ -6,21 +6,21 @@ import { findRenderedComponentWithType } from "react-dom/test-utils";
 const Cart = ({ setSuccessFlag, successFlag }) => {
   const [flag, setFlag] = useState(false);
   const [arr, setArr] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(32);
+  const [selectedQty, setSelectedQty] = useState(1);
+
   //   const [carts, setCarts] = useState([]);
   const closeModal = () => {
     setFlag(false);
   };
 
   useEffect(async () => {
-    console.log(successFlag);
     setFlag(successFlag);
     var modal = document.getElementById("myModal");
     var close = document.getElementById("close-btn");
-    console.log(flag);
+
     if (flag == true) {
       modal.style.display = "block";
-
-      console.log(flag);
     } else {
       modal.style.display = "none";
     }
@@ -51,6 +51,15 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
     setArr(temp);
   }, []);
 
+  const handleSize = (e) => {
+    console.log(e.target, "======>onchange");
+    setSelectedSize(e.target.value);
+  };
+  const handleQty = (e) => {
+    console.log(e.target, "======>onchange");
+    setSelectedQty(e.target.value);
+  };
+
   const updateItems = async (id) => {
     let t = await localStorage.getItem("products");
     t = JSON.parse(t);
@@ -75,7 +84,14 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
             {arr.map((m, i) => {
               return (
                 <>
-                  <Card product={m} updateItems={updateItems} />
+                  <Card
+                    product={m}
+                    updateItems={updateItems}
+                    handleQty={handleQty}
+                    handleSize={handleSize}
+                    selectedQty={selectedQty}
+                    selectedSize={selectedSize}
+                  />
                 </>
               );
             })}
@@ -88,6 +104,7 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
               alignItems: "center",
             }}
           >
+            {/* <input type="text" onChange={handleQty} /> */}
             <button id="close-btn" className="save-test-btn cursor upload-btn">
               Done
             </button>
