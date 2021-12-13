@@ -21,8 +21,9 @@ const Product = (props) => {
   };
 
   useEffect(async () => {
-    let k = await localStorage.getItem("products");
-    k = JSON.parse(k).length;
+    let k = 0;
+    k = await localStorage.getItem("products");
+    k = JSON?.parse(k)?.length;
     setCb(k);
   }, []);
 
@@ -99,14 +100,6 @@ const Product = (props) => {
             <div className="select-option">
               {size.map((m, i) => (
                 <div className="radio">
-                  {/* <span>{m}</span>
-                  <input
-                    type="radio"
-                    id="size"
-                    name="size"
-                    value={m}
-                    onChange={handleOnChange}
-                  />{" "} */}
                   <button className="round" onClick={() => handleSize(i)}>
                     {m}
                   </button>

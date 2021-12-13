@@ -110,7 +110,7 @@ const Navbar = ({ products, setProducts, allProds, count }) => {
           </li>
           <li className="li-flex" style={{ position: "relative" }}>
             <BiShoppingBag />
-            <span className="bag-count">{count}</span>
+            {count > 0 ? <span className="bag-count">{count}</span> : ""}
             <Link className="link" onClick={openPopup}>
               Bag
             </Link>
