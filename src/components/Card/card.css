@@ -17,6 +17,7 @@
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .top-of-img {
@@ -44,6 +45,7 @@
   margin: 5% auto;
   width: 90%;
   text-align: center;
+  cursor: pointer;
 }
 
 .details {

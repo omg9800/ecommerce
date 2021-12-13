@@ -43,7 +43,7 @@ const Sidebar = ({ products, setProducts, setFlag, flag, allProds }) => {
     // );
     // setCheckedStateDiscount(updatedCheckedState);
 
-    let prods = products.filter((m) => m.discount >= e.target.value);
+    let prods = allProds.filter((m) => m.discount >= e.target.value);
     setProducts(prods);
   };
   const handleGender = (e) => {
