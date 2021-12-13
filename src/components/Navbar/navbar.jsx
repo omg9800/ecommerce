@@ -101,9 +101,9 @@ const Navbar = ({ products, setProducts, allProds, count }) => {
               Profile
             </Link>
           </li>
-          <li className="li-flex" style={{ position: "relative" }}>
+          <li className="li-flex">
             <BsHeart />
-            <span className="bag-count">{count}</span>
+            {/* <span className="bag-count">{count}</span> */}
             <Link className="link" to="#">
               Wishlist
             </Link>

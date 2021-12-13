@@ -46,8 +46,9 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
   });
 
   useEffect(() => {
-    var temp = localStorage.getItem("products");
-    temp = JSON.parse(temp);
+    var temp = 0;
+    temp = localStorage.getItem("products");
+    temp = JSON?.parse(temp);
     setArr(temp);
   }, []);
 
@@ -62,8 +63,8 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
 
   const updateItems = async (id) => {
     let t = await localStorage.getItem("products");
-    t = JSON.parse(t);
-    t = arr.filter((m) => m.id != id);
+    t = JSON?.parse(t);
+    t = arr?.filter((m) => m.id != id);
     localStorage.setItem("products", JSON.stringify(t));
     setArr(t);
   };
@@ -81,7 +82,7 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
           <span className="close">&times;</span>
           <div className="flex">Your Cart</div>
           <div className="content">
-            {arr.map((m, i) => {
+            {arr?.map((m, i) => {
               return (
                 <>
                   <Card

@@ -26,8 +26,8 @@ const Card = (props) => {
 
   const removeFromBag = async () => {
     let arr = await localStorage.getItem("products");
-    arr = JSON.parse(arr);
-    arr = arr.filter((m) => m.id != id);
+    arr = JSON?.parse(arr);
+    arr = arr?.filter((m) => m.id != id);
     localStorage.setItem("products", JSON.stringify(arr));
     // updateItems();
   };
@@ -46,7 +46,7 @@ const Card = (props) => {
           <label>
             Size:
             <select name="size" id="size" onchange={handleSize}>
-              {size.map((m, i) => (
+              {size?.map((m, i) => (
                 <option value={m} key={i + m}>
                   {m}
                 </option>
@@ -56,7 +56,7 @@ const Card = (props) => {
           <label>
             Qty:
             <select onchange={handleQty}>
-              {qty.map((m, i) => (
+              {qty?.map((m, i) => (
                 <option value={m} key={i + m}>
                   {m}
                 </option>
