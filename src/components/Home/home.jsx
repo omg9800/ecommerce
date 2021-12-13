@@ -30,7 +30,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="all">
       {loader == true ? (
         <div
           className="center"
@@ -67,7 +67,7 @@ const Home = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

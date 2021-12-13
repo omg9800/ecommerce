@@ -4,19 +4,35 @@ const Sidebar = ({ products, setProducts, setFlag, flag, allProds }) => {
   const [checkedState, setCheckedState] = useState(new Array(2).fill(false));
   const [total, setTotal] = useState(0);
   const [discount, setdiscount] = useState(0);
+  const [aboveSix, setAboveSix] = useState([]);
+  const [aboveTh, setAboveTh] = useState([]);
   const [checkedStateDiscount, setCheckedStateDiscount] = useState(
     new Array(3).fill(false)
   );
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e, checked) => {
     let position = e.target.id;
     const updatedCheckedState = checkedState.map((item, index) =>
       index == position ? !item : item
     );
     setCheckedState(updatedCheckedState);
-
-    let prods = products.filter((m) => m.price >= e.target.value);
-    setProducts(prods);
+    console.log(e.target, "==============>");
+    var k = [];
+    if (checked) {
+      if (e.target.id == 0 && checkedState[1]) setProducts(aboveTh);
+      else if (e.target.id == 1 && checkedState[0]) setProducts(aboveSix);
+      else setProducts(allProds);
+      console.log("if");
+    } else {
+      let prods = products.filter((m) => m.price >= e.target.value);
+      if (e.target.id == 0) {
+        setAboveSix(prods);
+      }
+      if (e.target.id == 1) {
+        setAboveTh(prods);
+      }
+      setProducts(prods);
+    }
   };
 
   const handleDiscount = (e) => {
@@ -78,7 +94,7 @@ const Sidebar = ({ products, setProducts, setFlag, flag, allProds }) => {
                 name="1st"
                 value={600}
                 checked={checkedState[0]}
-                onChange={handleOnChange}
+                onChange={(e) => handleOnChange(e, checkedState[0])}
               />
               <label htmlFor="0"> 600 and Above</label>
             </li>
@@ -89,7 +105,7 @@ const Sidebar = ({ products, setProducts, setFlag, flag, allProds }) => {
                 name="2nd"
                 value={1000}
                 checked={checkedState[1]}
-                onChange={handleOnChange}
+                onChange={(e) => handleOnChange(e, checkedState[1])}
               />
               <label htmlFor="1"> 1000 and Above</label>
             </li>

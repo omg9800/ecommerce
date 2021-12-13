@@ -67,7 +67,7 @@ const Product = (props) => {
   // };
 
   return (
-    <>
+    <div className="product-all">
       <Navbar count={cb} />
 
       <div className="product-container">
@@ -125,7 +125,7 @@ const Product = (props) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

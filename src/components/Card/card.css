@@ -102,3 +102,13 @@
   margin-left: 10px;
   color: #757884;
 }
+
+@media screen and (max-width: 480px) {
+  .card-container {
+    width: 280px;
+    height: 350px;
+    margin: 30px 0px 80px 25px;
+    position: relative;
+    /* padding-top: 10px; */
+  }
+}

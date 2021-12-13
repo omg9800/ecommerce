@@ -12,6 +12,9 @@
   /* width: 100vw; */
   margin-right: 0;
   z-index: 50;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 .logo {
   width: 40px;
@@ -104,4 +107,26 @@ input {
   color: white;
   border-radius: 40%;
   font-size: 0.8rem;
+}
+
+@media screen and (max-width: 480px) {
+  .navbar-left-right {
+    display: none;
+  }
+  .search {
+    width: 3vw;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+  .navbar-mid {
+  }
+
+  .navbar-right > ul {
+    margin-left: 10px !important;
+  }
 }
