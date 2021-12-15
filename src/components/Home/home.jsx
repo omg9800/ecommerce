@@ -5,7 +5,7 @@ import Navbar from "../Navbar/navbar";
 import "./home.css";
 import App from "../Loader/loader";
 
-const Home = () => {
+const Home = ({ searchText, setCountWishlist }) => {
   const [products, setProducts] = useState([]);
   const [allProds, setAllProds] = useState([]);
   const [loader, setLoader] = useState(true);
@@ -21,6 +21,14 @@ const Home = () => {
         setLoader(false);
       });
   }, []);
+
+  useEffect(() => {
+    const results = allProds.filter((product) =>
+      product.title.toLowerCase().includes(searchText)
+    );
+
+    setProducts(results);
+  }, [searchText]);
 
   useEffect(async () => {
     let k = 0;
@@ -46,12 +54,6 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <Navbar
-            products={products}
-            setProducts={setProducts}
-            allProds={allProds}
-            count={count}
-          />
           <div className="home-container">
             <div className="sidebar">
               <Sidebar
@@ -62,7 +64,11 @@ const Home = () => {
               />
             </div>
             <div className="products">
-              <Products products={products} setProducts={setProducts} />
+              <Products
+                products={products}
+                setProducts={setProducts}
+                setCountWishlist={setCountWishlist}
+              />
             </div>
           </div>
         </>

@@ -8,6 +8,7 @@ import "./card.css";
 const Card = (props) => {
   let { title, description, price, rating, image, category, size } =
     props.product;
+  let { product, setCountWishlist } = props;
   image = image[0];
   const [isHovering, setIsHovering] = useState(false);
 
@@ -29,9 +30,24 @@ const Card = (props) => {
     history.push({
       pathname: "/product",
       state: {
-        product: props.product,
+        product: product,
       },
     });
+  };
+
+  const addToWishlist = async () => {
+    let wishlists = [];
+    let old = await localStorage.getItem("wishlists");
+    if (!old) {
+      wishlists.push(product);
+      localStorage.setItem("wishlists", JSON.stringify(wishlists));
+    } else {
+      wishlists = [...JSON.parse(old)];
+      wishlists.push(product);
+      localStorage.setItem("wishlists", JSON.stringify(wishlists));
+    }
+
+    setCountWishlist();
   };
 
   const history = useHistory();
@@ -53,7 +69,7 @@ const Card = (props) => {
         <p className="count-sm">{rating.count}</p>
       </div>
       <div className={isHovering ? "top-of-img" : "no-button"}>
-        <button>Wishlist</button>
+        <button onClick={addToWishlist}>Wishlist</button>
       </div>
       <div className="details">
         <p className="title">{title}</p>

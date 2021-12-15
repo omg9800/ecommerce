@@ -12,9 +12,13 @@ const Product = (props) => {
   const [product, setProduct] = useState(props?.location?.state?.product);
   const [failFlag, setFailFlag] = useState(true);
   console.log(product);
+
   const { image, title, description, size, rating, price } = product;
+  const { setCountBag, setCountWishlist } = props;
+  console.log(props);
   const [sz, setsz] = useState("");
   const [cb, setCb] = useState(0);
+
   const handleOnChange = (e) => {
     console.log(e.target.value);
     setsz(e.target.value);
@@ -42,33 +46,32 @@ const Product = (props) => {
 
     // let arr = await localStorage.getItem("products");
     // count = JSON.parse(arr).length;
-    setCb(cb + 1);
+    // setCb(cb + 1);
+    setCountBag();
   };
 
   const handleSize = (i) => {
     setsz(size[i]);
   };
 
-  // const addToWishlist = async () => {
-  //   let products = [];
-  //   let old = await localStorage.getItem("products");
-  //   if (!old) {
-  //     products.push(product);
-  //     localStorage.setItem("products", JSON.stringify(products));
-  //   } else {
-  //     products = [...JSON.parse(old)];
-  //     products.push(product);
-  //     localStorage.setItem("products", JSON.stringify(products));
-  //   }
+  const addToWishlist = async () => {
+    let wishlists = [];
+    let old = await localStorage.getItem("wishlists");
+    if (!old) {
+      wishlists.push(product);
+      localStorage.setItem("wishlists", JSON.stringify(wishlists));
+    } else {
+      wishlists = [...JSON.parse(old)];
+      wishlists.push(product);
+      localStorage.setItem("wishlists", JSON.stringify(wishlists));
+    }
 
-  //   // let arr = await localStorage.getItem("products");
-  //   // count = JSON.parse(arr).length;
-  //   setCb(cb + 1);
-  // };
+    setCountWishlist();
+  };
 
   return (
     <div className="product-all">
-      <Navbar count={cb} />
+      {/* <Navbar count={cb} /> */}
 
       <div className="product-container">
         <div className="prod-img">
@@ -107,17 +110,21 @@ const Product = (props) => {
               ))}
             </div>
             <div className="btn">
-              <div className="bag">
+              <div
+                className="bag"
+                onClick={() => {
+                  addToBag();
+                }}
+              >
                 <BiShoppingBag />
-                <button
-                  onClick={() => {
-                    addToBag();
-                  }}
-                >
-                  ADD TO BAG
-                </button>
+                <button>ADD TO BAG</button>
               </div>
-              <div className="wishlist">
+              <div
+                className="wishlist"
+                onClick={() => {
+                  addToWishlist();
+                }}
+              >
                 <BsHeart />
                 <button>WISHLIST</button>
               </div>

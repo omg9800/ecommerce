@@ -6,35 +6,26 @@ import { MdSearch } from "react-icons/md";
 import { BsFillPersonFill, BsPerson, BsHeart } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
 import Cart from "../Cart/cart";
-const Navbar = ({ products, setProducts, allProds, count }) => {
-  const [searchText, setSearchText] = useState("");
-  const [countBag, setCountBag] = useState(0);
-  const [successFlag, setSuccessFlag] = useState(false);
+const Navbar = ({
+  setSearchText,
+  searchText,
+  countBag,
+  countWish,
+  setSuccessFlag,
+  successFlag,
+  setCountBag,
+  setCountWishlist,
+}) => {
+  // const [countBag, setCountBag] = useState(0);
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);
-    const results = allProds.filter((product) =>
-      product.title.toLowerCase().includes(searchText)
-    );
-    // console.log(e);
-    // if (e.code === "Enter" || e.code === "NumpadEnter") {
-    //   console.log("Enter key was pressed. Run your function.");
-    //   e.preventDefault();
-    setProducts(results);
-    // }
-  };
+    // const results = allProds.filter((product) =>
+    //   product.title.toLowerCase().includes(searchText)
+    // );
 
-  // const listener = (event) => {
-  //   if (event.code === "Enter" || event.code === "NumpadEnter") {
-  //     console.log("Enter key was pressed. Run your function.");
-  //     event.preventDefault();
-  //     const results = allProds.filter((product) =>
-  //       product.title.toLowerCase().includes(searchText)
-  //     );
-  //     setProducts(results);
-  //   }
-  // };
-  // document.addEventListener("keydown", listener);
+    // setProducts(results);
+  };
 
   const openPopup = () => {
     setSuccessFlag(true);
@@ -104,20 +95,29 @@ const Navbar = ({ products, setProducts, allProds, count }) => {
           <li className="li-flex">
             <BsHeart />
             {/* <span className="bag-count">{count}</span> */}
-            <Link className="link" to="#">
+            <Link className="link" to="#" style={{ position: "relative" }}>
+              {countWish > 0 ? (
+                <span className="wish-count">{countWish}</span>
+              ) : (
+                ""
+              )}
               Wishlist
             </Link>
           </li>
           <li className="li-flex" style={{ position: "relative" }}>
             <BiShoppingBag />
-            {count > 0 ? <span className="bag-count">{count}</span> : ""}
+            {countBag > 0 ? <span className="bag-count">{countBag}</span> : ""}
             <Link className="link" onClick={openPopup}>
               Bag
             </Link>
           </li>
         </ul>
       </div>
-      <Cart successFlag={successFlag} setSuccessFlag={setSuccessFlag} />
+      <Cart
+        successFlag={successFlag}
+        setSuccessFlag={setSuccessFlag}
+        setCountBag={setCountBag}
+      />
     </div>
   );
 };

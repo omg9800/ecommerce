@@ -3,7 +3,7 @@ import "./cart.css";
 import Card from "./Card/card";
 import { findRenderedComponentWithType } from "react-dom/test-utils";
 
-const Cart = ({ setSuccessFlag, successFlag }) => {
+const Cart = ({ setSuccessFlag, successFlag, setCountBag }) => {
   const [flag, setFlag] = useState(false);
   const [arr, setArr] = useState([]);
   const [selectedSize, setSelectedSize] = useState(32);
@@ -50,7 +50,7 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
     temp = localStorage.getItem("products");
     temp = JSON?.parse(temp);
     setArr(temp);
-  }, []);
+  });
 
   const handleSize = (e) => {
     console.log(e.target, "======>onchange");
@@ -67,6 +67,7 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
     t = arr?.filter((m) => m.id != id);
     localStorage.setItem("products", JSON.stringify(t));
     setArr(t);
+    setCountBag();
   };
 
   return (
@@ -92,6 +93,7 @@ const Cart = ({ setSuccessFlag, successFlag }) => {
                     handleSize={handleSize}
                     selectedQty={selectedQty}
                     selectedSize={selectedSize}
+                    setCountBag={setCountBag}
                   />
                 </>
               );

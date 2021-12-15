@@ -13,6 +13,7 @@ const Card = (props) => {
     selectedSize,
     handleQty,
     handleSize,
+    setCountBag,
   } = props;
   console.log(props, "props");
 

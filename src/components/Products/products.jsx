@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import Card from "../Card/card";
 import Sort from "../Sort/sort";
 import "./products.css";
-const Products = ({ products, setProducts }) => {
+const Products = ({ products, setProducts, setCountWishlist }) => {
   const [newProducts, setNewProducts] = useState([]);
   // const [OriginalProducts, setOriginalProducts] = useState(props.products);
 
@@ -23,7 +23,7 @@ const Products = ({ products, setProducts }) => {
             console.log(key);
             return (
               // <div key={key.toString()}>
-              <Card product={m} />
+              <Card product={m} setCountWishlist={setCountWishlist} />
               // </div>
             );
           })}
