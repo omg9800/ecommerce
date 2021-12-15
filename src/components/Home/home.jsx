@@ -12,7 +12,7 @@ const Home = ({ searchText, setCountWishlist }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    fetch("https://ecommerce-980.herokuapp.com/products")
+    fetch("https://ecommerce-980.herokuapp.com/products/category/shirt")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
