@@ -21,7 +21,7 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag, countBag }) => {
 
   const findTotalPrice = () => {
     var s = 0;
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr?.length; i++) {
       let k = selectedQty[i] * arr[i]?.price;
       s = s + k;
     }
