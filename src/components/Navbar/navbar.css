@@ -15,10 +15,14 @@
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  position: fixed;
+  top: 0;
+
+  background-color: white;
 }
 .logo {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 60px;
   margin-left: 50px;
   margin-right: 50px;
 }
@@ -41,7 +45,6 @@
   align-items: center;
 }
 .navbar-right {
-  /* margin-right: 0 !important; */
 }
 
 .navbar-left-right > ul {
@@ -55,6 +58,7 @@
 
 .navbar-right > ul {
   display: flex;
+
   list-style: none;
   margin-left: 100px;
 }
@@ -103,7 +107,7 @@ input {
   width: 23px;
   text-align: center;
   padding-bottom: 3px;
-  background-color: #f16565;
+  background-color: #c23490;
   color: white;
   border-radius: 40%;
   font-size: 0.8rem;
@@ -117,13 +121,16 @@ input {
   width: 23px;
   text-align: center;
   padding-bottom: 3px;
-  background-color: #f16565;
+  background-color: #c23490;
   color: white;
   border-radius: 40%;
   font-size: 0.8rem;
 }
 
 @media screen and (max-width: 480px) {
+  .navbar-container {
+    width: 100vw;
+  }
   .navbar-left-right {
     display: none;
   }
@@ -132,8 +139,8 @@ input {
   }
 
   .logo {
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 50px;
     margin-left: 20px;
     margin-right: 30px;
   }
@@ -141,6 +148,16 @@ input {
   }
 
   .navbar-right > ul {
-    margin-left: 10px !important;
+    margin-left: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .navbar-right > ul > li {
+    margin-right: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .navbar-left {
+    width: 100px;
   }
 }

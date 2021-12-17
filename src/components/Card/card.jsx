@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import Rating from "../Helper/helper";
@@ -11,6 +11,8 @@ const Card = (props) => {
   let { product, setCountWishlist } = props;
   image = image[0];
   const [isHovering, setIsHovering] = useState(false);
+  let { cat } = useParams();
+  // console.log(cat, "cat i card==========>");
 
   useEffect(() => {
     console.log("useffect ran");
@@ -28,7 +30,7 @@ const Card = (props) => {
 
   const handleClick = () => {
     history.push({
-      pathname: "/product",
+      pathname: `/${cat}/product`,
       state: {
         product: product,
       },

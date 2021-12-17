@@ -1,3 +1,8 @@
 button {
   cursor: pointer;
 }
+.App {
+  max-width: 100vw !important;
+  /* margin: 0 2vw; */
+  overflow-x: hidden !important;
+}

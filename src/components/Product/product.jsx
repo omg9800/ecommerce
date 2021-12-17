@@ -8,7 +8,7 @@ import { BsHeart } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
 import Rating from "../Helper/helper";
 const Product = (props) => {
-  console.log(props);
+  console.log(props, "====>>>");
   const [product, setProduct] = useState(props?.location?.state?.product);
   const [failFlag, setFailFlag] = useState(true);
   console.log(product);

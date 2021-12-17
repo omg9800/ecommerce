@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./navbar.css";
-import logo from "../../images/logo.png";
+import logo from "../../images/logo.svg";
 import { MdSearch } from "react-icons/md";
 import { BsFillPersonFill, BsPerson, BsHeart } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
@@ -117,6 +117,7 @@ const Navbar = ({
         successFlag={successFlag}
         setSuccessFlag={setSuccessFlag}
         setCountBag={setCountBag}
+        countBag={countBag}
       />
     </div>
   );

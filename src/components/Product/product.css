@@ -6,7 +6,7 @@
 
 .product-container {
   display: flex;
-  margin: 5% 2%;
+  margin: 10% 2% 2% 2%;
 }
 
 .prod-img {
@@ -98,7 +98,7 @@
 }
 .chart {
   font-size: 1.1rem;
-  color: #ff4271;
+  color: #c23490;
   font-weight: 500;
 }
 
@@ -130,31 +130,35 @@
 }
 
 button:active {
-  border: 1px solid #ff4271;
+  border: 1px solid #c23490;
 }
 
 button:focus {
-  border: 1px solid #ff4271;
+  border: 1px solid #c23490;
 }
 
 .btn {
   display: flex;
   margin-top: 20px;
+  width: 100%;
 }
 
 .bag {
-  display: inline-block;
-  padding: 15px 70px;
-  background-color: #ff4271;
+  display: flex;
+  /* padding: 12px 70px; */
+  width: 400px;
+  height: 50px;
+  background-color: #c23490;
   margin-right: 40px;
   border: none;
   color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .bag > button {
-  background-color: #ff4271;
+  background-color: #c23490;
   border: none;
   margin-left: 20px;
   font-size: 0.9rem;
@@ -164,11 +168,14 @@ button:focus {
 
 .wishlist {
   background-color: #efefef;
-  padding: 15px 70px;
+  /* padding: 15px 70px; */
+  height: 50px;
+  width: 400px;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   color: black;
 }
 .wishlist > button {
@@ -189,28 +196,44 @@ button:focus {
   }
 
   .product-all {
+    width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    margin-top: 40px;
   }
-
+  .select-option {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
   .prod-img {
     margin-top: 15px;
-    width: 80%;
+    width: 90%;
     height: 60vh;
-    margin-right: 5%;
+    margin-right: 0%;
     margin-bottom: 20px;
   }
   .prod-details {
-    width: 80%;
+    width: 90%;
+  }
+  .size-heading {
+    display: flex;
+    justify-content: space-between;
   }
 
   .btn {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    align-items: stretch;
   }
   .bag {
     margin-bottom: 25px;
     margin-right: 0;
+    width: 100%;
+  }
+
+  .wishlist {
+    width: 100%;
   }
 }

@@ -67,6 +67,28 @@
   margin-bottom: 25px;
 }
 
+.checkout {
+  display: "flex";
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5vh 0;
+  text-align: center;
+}
+
+.checkout > p {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 2vh;
+}
+
+.checkout-btn {
+  text-decoration: none;
+  background-color: #c23490;
+  padding: 7px 30px;
+  color: #fefefe;
+}
+
 @media screen and (max-width: 480px) {
   .modal-content {
     width: 95%;

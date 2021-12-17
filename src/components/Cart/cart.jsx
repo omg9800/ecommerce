@@ -1,23 +1,37 @@
 import React, { Component, useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./cart.css";
 import Card from "./Card/card";
-import { findRenderedComponentWithType } from "react-dom/test-utils";
 
-const Cart = ({ setSuccessFlag, successFlag, setCountBag }) => {
+const Cart = ({ setSuccessFlag, successFlag, setCountBag, countBag }) => {
   const [flag, setFlag] = useState(false);
   const [arr, setArr] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(32);
-  const [selectedQty, setSelectedQty] = useState(1);
 
+  const [selectedSize, setSelectedSize] = useState([
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  ]);
+  const [selectedQty, setSelectedQty] = useState([
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  ]);
+  console.log(selectedQty);
   //   const [carts, setCarts] = useState([]);
   const closeModal = () => {
     setFlag(false);
   };
 
+  const findTotalPrice = () => {
+    var s = 0;
+    for (let i = 0; i < arr.length; i++) {
+      let k = selectedQty[i] * arr[i]?.price;
+      s = s + k;
+    }
+    return s;
+  };
+
   useEffect(async () => {
     setFlag(successFlag);
     var modal = document.getElementById("myModal");
-    var close = document.getElementById("close-btn");
+    // var close = document.getElementById("close-btn");
 
     if (flag == true) {
       modal.style.display = "block";
@@ -32,10 +46,10 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag }) => {
       setSuccessFlag(false);
     };
 
-    close.onclick = function () {
-      modal.style.display = "none";
-      setSuccessFlag(false);
-    };
+    // close.onclick = function () {
+    //   modal.style.display = "none";
+    //   setSuccessFlag(false);
+    // };
 
     window.onclick = function (event) {
       if (event.target == modal) {
@@ -50,15 +64,21 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag }) => {
     temp = localStorage.getItem("products");
     temp = JSON?.parse(temp);
     setArr(temp);
-  });
+  }, [countBag]);
 
-  const handleSize = (e) => {
-    console.log(e.target, "======>onchange");
-    setSelectedSize(e.target.value);
+  const handleSizeFtn = (index, value) => {
+    console.log(value, "======>onchange");
+    let oldSizes = [...selectedSize];
+    oldSizes[index] = value;
+    setSelectedSize(oldSizes);
   };
-  const handleQty = (e) => {
-    console.log(e.target, "======>onchange");
-    setSelectedQty(e.target.value);
+
+  const handleQtyFtn = (index, value) => {
+    console.log(value, "======>onchange");
+    let oldQtys = [...selectedQty];
+    // oldQtys.splice(index, 0, value);
+    oldQtys[index] = value;
+    setSelectedQty(oldQtys);
   };
 
   const updateItems = async (id) => {
@@ -87,12 +107,16 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag }) => {
               return (
                 <>
                   <Card
+                    key={m.id + i}
+                    ind={i}
                     product={m}
                     updateItems={updateItems}
-                    handleQty={handleQty}
-                    handleSize={handleSize}
+                    handleQtyFtn={handleQtyFtn}
+                    handleSizeFtn={handleSizeFtn}
                     selectedQty={selectedQty}
                     selectedSize={selectedSize}
+                    setSelectedQty={setSelectedQty}
+                    setSelectedSize={setSelectedSize}
                     setCountBag={setCountBag}
                   />
                 </>
@@ -100,17 +124,16 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag }) => {
             })}
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {/* <input type="text" onChange={handleQty} /> */}
-            <button id="close-btn" className="save-test-btn cursor upload-btn">
-              Done
-            </button>
+          <div className="checkout">
+            <p className="total">Total Amount: {findTotalPrice()}</p>
+
+            <Link
+              // id="close-btn"
+              className="checkout-btn"
+              // to="/checkout"
+            >
+              Checkout
+            </Link>
           </div>
         </div>
       </div>

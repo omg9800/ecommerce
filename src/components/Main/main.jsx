@@ -1,36 +1,14 @@
 import React, { Component, useState, useEffect } from "react";
 import Sidebar from "../Sidebar/sidebar";
 import Products from "../Products/products";
-import Home from "../Home/home";
+import FilterableProducts from "../FilterableProducts/filterableProducts";
 import Product from "../Product/product";
 import Navbar from "../Navbar/navbar";
-
+import Home from "../Home/home";
 import App from "../Loader/loader";
 import { Switch, Route } from "react-router-dom";
 
-const Main = () => {
-  const [searchText, setSearchText] = useState("");
-  const [countB, setCountB] = useState(0);
-  const [countW, setCountW] = useState(0);
-  const [successFlag, setSuccessFlag] = useState(false);
-
-  useEffect(async () => {
-    setCountBag();
-    setCountWishlist();
-  }, []);
-
-  const setCountBag = async () => {
-    let k = await localStorage.getItem("products");
-    k = JSON.parse(k)?.length;
-    setCountB(k);
-  };
-
-  const setCountWishlist = async () => {
-    let k = await localStorage.getItem("wishlists");
-    k = JSON.parse(k)?.length;
-    setCountW(k);
-  };
-
+const Main = ({ searchText, setCountBag, setCountWishlist }) => {
   return (
     <div className="all">
       {false ? (
@@ -48,24 +26,15 @@ const Main = () => {
         </div>
       ) : (
         <>
-          <Navbar
-            setSearchText={setSearchText}
-            countBag={countB}
-            countWish={countW}
-            successFlag={successFlag}
-            setSuccessFlag={setSuccessFlag}
-            setCountBag={setCountBag}
-            setCountWishlist={setCountWishlist}
-          />
-
           <Switch>
-            <Route path="/" exact>
-              <Home
+            <Route path="/:cat" exact>
+              <FilterableProducts
                 searchText={searchText}
                 setCountWishlist={setCountWishlist}
               />
             </Route>
-            <Route path="/product">
+
+            <Route path="/main/product">
               <Product
                 setCountBag={setCountBag}
                 setCountWishlist={setCountWishlist}

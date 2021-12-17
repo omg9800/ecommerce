@@ -11,11 +11,12 @@ const Card = (props) => {
     onChange,
     selectedQty,
     selectedSize,
-    handleQty,
-    handleSize,
+    handleQtyFtn,
+    handleSizeFtn,
     setCountBag,
+    ind,
   } = props;
-  console.log(props, "props");
+  // console.log(props, "props");
 
   image = image[0];
   const [isHovering, setIsHovering] = useState(false);
@@ -23,14 +24,15 @@ const Card = (props) => {
 
   useEffect(() => {
     console.log("useeffect ran");
-  }, []);
+  });
 
-  const removeFromBag = async () => {
-    let arr = await localStorage.getItem("products");
-    arr = JSON?.parse(arr);
-    arr = arr?.filter((m) => m.id != id);
-    localStorage.setItem("products", JSON.stringify(arr));
-    // updateItems();
+  const handleSize = (e) => {
+    console.log(e.target, "======>onchange");
+    handleSizeFtn(ind, e.target.value);
+  };
+  const handleQty = (e) => {
+    console.log(e.target, "======>onchange");
+    handleQtyFtn(ind, e.target.value);
   };
 
   return (
@@ -46,7 +48,7 @@ const Card = (props) => {
         <div className="card-select">
           <label>
             Size:
-            <select name="size" id="size" onchange={handleSize}>
+            <select name="size" id="size" onChange={(e) => handleSize(e)}>
               {size?.map((m, i) => (
                 <option value={m} key={i + m}>
                   {m}
@@ -56,7 +58,7 @@ const Card = (props) => {
           </label>
           <label>
             Qty:
-            <select onchange={handleQty}>
+            <select onChange={(e) => handleQty(e)}>
               {qty?.map((m, i) => (
                 <option value={m} key={i + m}>
                   {m}
@@ -64,11 +66,14 @@ const Card = (props) => {
               ))}
             </select>
           </label>
-          {/* <input type="text" onchange={handleChange} /> */}
-          <p className="card-price">Rs. {selectedQty * price}</p>
+
+          <p className="card-price">
+            Rs. {selectedQty[ind] > 1 ? selectedQty[ind] * price : 1 * price}
+          </p>
         </div>
       </div>
       <div className="remove">
+        {/* <input type="text" onChange={handleChange} /> */}
         <button onClick={() => updateItems(id)}>X</button>
       </div>
     </div>
