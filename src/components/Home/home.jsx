@@ -19,8 +19,13 @@ function Home() {
     setCountWishlist();
   }, []);
 
+<<<<<<< HEAD
   useEffect(async () => {
     fetch("https://ecommerce-980.herokuapp.com/products/categories")
+=======
+  useEffect(() => {
+    fetch("https://ecommerce-980.herokuapp.com/products/category/shirt")
+>>>>>>> 1f26ce8057c540307422d3ec5bfd2b2e3a527ace
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
