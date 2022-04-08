@@ -20,7 +20,7 @@ const Products = ({ products, setProducts, setCountWishlist }) => {
         <div className="products">
           {products.map((m, i) => {
             const key = m.title + m.id;
-            console.log(key);
+            // console.log(key);
             return (
               // <div key={key.toString()}>
               <Card product={m} setCountWishlist={setCountWishlist} />

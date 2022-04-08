@@ -1,27 +1,37 @@
 import React, { Component, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import Navbar from "../Navbar/navbar";
-import Cart from "../Cart/cart";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart } from "../../store/cart";
+
 import "./product.css";
 import { FaStar } from "react-icons/fa";
 import { BsHeart } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
-import Rating from "../Helper/helper";
-const Product = (props) => {
-  console.log(props, "====>>>");
-  const [product, setProduct] = useState(props?.location?.state?.product);
-  const [failFlag, setFailFlag] = useState(true);
-  console.log(product);
+import { toast } from "react-toastify";
 
-  const { image, title, description, size, rating, price } = product;
+const Product = (props) => {
+  const [product, setProduct] = useState(props?.location?.state?.product);
+  const dispatch = useDispatch();
+  const carts = useSelector((state) => state.cart.items);
+
+  const { image, title, description, size, rating, price, _id } = product;
   const { setCountBag, setCountWishlist } = props;
-  console.log(props);
   const [sz, setsz] = useState("");
   const [cb, setCb] = useState(0);
+
+  // const userId = useSelector((state) => state.user._id);
+  let cart = {
+    userId: JSON.parse(localStorage.getItem("user"))?._id,
+    productId: { title, description, image, price, _id, quantity: 1, size: sz },
+  };
 
   const handleOnChange = (e) => {
     console.log(e.target.value);
     setsz(e.target.value);
+  };
+
+  const notify = () => {
+    toast.warning("Please login first");
   };
 
   useEffect(async () => {
@@ -31,23 +41,8 @@ const Product = (props) => {
     setCb(k);
   }, []);
 
-  const addToBag = async () => {
-    product.selectedSize = sz;
-    let products = [];
-    let old = await localStorage.getItem("products");
-    if (!old) {
-      products.push(product);
-      localStorage.setItem("products", JSON.stringify(products));
-    } else {
-      products = [...JSON.parse(old)];
-      products.push(product);
-      localStorage.setItem("products", JSON.stringify(products));
-    }
-
-    // let arr = await localStorage.getItem("products");
-    // count = JSON.parse(arr).length;
-    // setCb(cb + 1);
-    setCountBag();
+  const addToBag = () => {
+    dispatch(addItemToCart({ cart, carts }));
   };
 
   const handleSize = (i) => {
@@ -71,8 +66,6 @@ const Product = (props) => {
 
   return (
     <div className="product-all">
-      {/* <Navbar count={cb} /> */}
-
       <div className="product-container">
         <div className="prod-img">
           <img src={image} alt="" />
@@ -110,12 +103,7 @@ const Product = (props) => {
               ))}
             </div>
             <div className="btn">
-              <div
-                className="bag"
-                onClick={() => {
-                  addToBag();
-                }}
-              >
+              <div className="bag" onClick={addToBag}>
                 <BiShoppingBag />
                 <button>ADD TO BAG</button>
               </div>

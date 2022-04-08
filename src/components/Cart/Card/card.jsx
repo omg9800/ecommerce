@@ -1,44 +1,75 @@
-import React, { Component, useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./card.css";
+import { useSelector, useDispatch } from "react-redux";
+import { removeCart, editCart } from "../../../store/cart";
 
 const Card = (props) => {
-  let { title, description, price, rating, image, category, size, id } =
-    props.product;
-  const {
-    updateItems,
-    onChange,
-    selectedQty,
-    selectedSize,
-    handleQtyFtn,
-    handleSizeFtn,
-    setCountBag,
-    ind,
-  } = props;
-  // console.log(props, "props");
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  const userId = user._id;
+  let { title, description, price, image, size, _id } = props.product;
+  let { quantity } = props?.product;
+  let allSize = [32, 34, 36, 38];
+  let products = useSelector((state) => state.cart.items);
 
-  image = image[0];
-  const [isHovering, setIsHovering] = useState(false);
+  const img = image[0];
   const [qty, setQty] = useState([1, 2, 3, 4, 5]);
 
-  useEffect(() => {
-    console.log("useeffect ran");
-  });
+  const mapToPost = () => {
+    let prods = [];
+    products.forEach((e) => {
+      prods.push({ productId: e._id, quantity: e.quantity, size: e.size });
+    });
+    return prods;
+  };
 
   const handleSize = (e) => {
-    console.log(e.target, "======>onchange");
-    handleSizeFtn(ind, e.target.value);
+    let items = mapToPost();
+
+    let frontProds = [];
+    products.map((el) => {
+      if (el._id === _id) {
+        frontProds.push({ ...el, size: e.target.value });
+      } else {
+        frontProds.push({ ...el });
+      }
+    });
+    items.forEach((el) => {
+      if (el.productId === _id) {
+        el.size = e.target.value;
+      }
+    });
+
+    dispatch(editCart({ userId, items, frontProds }));
   };
+
   const handleQty = (e) => {
-    console.log(e.target, "======>onchange");
-    handleQtyFtn(ind, e.target.value);
+    let frontProds = [];
+    products.map((el) => {
+      if (el._id === _id) {
+        frontProds.push({ ...el, quantity: e.target.value });
+      } else {
+        frontProds.push({ ...el });
+      }
+    });
+    let items = mapToPost(products);
+    items.map((el) => {
+      if (el.productId === _id) {
+        el.quantity = e.target.value;
+      }
+    });
+
+    dispatch(editCart({ userId, items, frontProds }));
+  };
+
+  const deleteCart = () => {
+    dispatch(removeCart({ userId, _id }));
   };
 
   return (
     <div className="cart-card-container">
       <div className="cart-card-img-container">
-        <img id="cart-card-img" src={image} alt="Card Image" />
+        <img id="cart-card-img" src={img} alt="Card Image" />
       </div>
 
       <div className="card-details">
@@ -49,8 +80,12 @@ const Card = (props) => {
           <label>
             Size:
             <select name="size" id="size" onChange={(e) => handleSize(e)}>
-              {size?.map((m, i) => (
-                <option value={m} key={i + m}>
+              {allSize?.map((m, i) => (
+                <option
+                  value={m}
+                  key={i + m}
+                  selected={m == props?.product?.size}
+                >
                   {m}
                 </option>
               ))}
@@ -60,7 +95,7 @@ const Card = (props) => {
             Qty:
             <select onChange={(e) => handleQty(e)}>
               {qty?.map((m, i) => (
-                <option value={m} key={i + m}>
+                <option value={m} key={i + m} selected={m == quantity}>
                   {m}
                 </option>
               ))}
@@ -68,13 +103,12 @@ const Card = (props) => {
           </label>
 
           <p className="card-price">
-            Rs. {selectedQty[ind] > 1 ? selectedQty[ind] * price : 1 * price}
+            Rs. {quantity ? quantity * price : price}
           </p>
         </div>
       </div>
       <div className="remove">
-        {/* <input type="text" onChange={handleChange} /> */}
-        <button onClick={() => updateItems(id)}>X</button>
+        <button onClick={deleteCart}>X</button>
       </div>
     </div>
   );

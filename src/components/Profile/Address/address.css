@@ -1,0 +1,58 @@
+.address-container {
+}
+
+.new-address-con {
+  width: 100%;
+  padding-bottom: 3%;
+}
+
+.new-address-btn {
+  float: right;
+  width: max-content;
+  margin: 10px;
+  padding: 4px 10px;
+  color: blue;
+  font-weight: 700;
+}
+
+.address-all {
+  border-bottom: 1px solid rgb(189, 187, 187);
+  padding: 15px;
+  /* margin-bottom: 10px; */
+  font-size: 1.1rem;
+}
+
+.address-list {
+  width: 70%;
+  display: flex;
+}
+
+.address-label {
+  width: 50%;
+  margin-right: 10%;
+}
+
+.address-value {
+  width: 50%;
+  text-align: start;
+}
+
+.address-btn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5%;
+}
+
+.abtn {
+  width: 80px;
+  height: 40px;
+  padding: 7px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  color: blue;
+}
+
+.address-lists {
+  height: 80%;
+}

@@ -1,28 +1,28 @@
-import React, { Component, useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./cart.css";
 import Card from "./Card/card";
 
-const Cart = ({ setSuccessFlag, successFlag, setCountBag, countBag }) => {
+const Cart = ({ setSuccessFlag, successFlag }) => {
   const [flag, setFlag] = useState(false);
   const [arr, setArr] = useState([]);
 
-  const [selectedSize, setSelectedSize] = useState([
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  ]);
-  const [selectedQty, setSelectedQty] = useState([
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  ]);
-  console.log(selectedQty);
-  //   const [carts, setCarts] = useState([]);
+  const cartItems = useSelector((state) => state.cart.items);
+  console.log(cartItems, "cartItems======>");
+
+  // useEffect(() => {
+  //   setArr(arr);
+  // }, [cartItems]);
+
   const closeModal = () => {
     setFlag(false);
   };
 
   const findTotalPrice = () => {
     var s = 0;
-    for (let i = 0; i < arr?.length; i++) {
-      let k = selectedQty[i] * arr[i]?.price;
+    for (let i = 0; i < cartItems?.length; i++) {
+      let k = cartItems[i].quantity * cartItems[i].price;
       s = s + k;
     }
     return s;
@@ -31,7 +31,7 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag, countBag }) => {
   useEffect(async () => {
     setFlag(successFlag);
     var modal = document.getElementById("myModal");
-    // var close = document.getElementById("close-btn");
+    var close = document.getElementById("close-btn");
 
     if (flag == true) {
       modal.style.display = "block";
@@ -46,10 +46,10 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag, countBag }) => {
       setSuccessFlag(false);
     };
 
-    // close.onclick = function () {
-    //   modal.style.display = "none";
-    //   setSuccessFlag(false);
-    // };
+    close.onclick = function () {
+      modal.style.display = "none";
+      setSuccessFlag(false);
+    };
 
     window.onclick = function (event) {
       if (event.target == modal) {
@@ -59,36 +59,8 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag, countBag }) => {
     };
   });
 
-  useEffect(() => {
-    var temp = 0;
-    temp = localStorage.getItem("products");
-    temp = JSON?.parse(temp);
-    setArr(temp);
-  }, [countBag]);
-
-  const handleSizeFtn = (index, value) => {
-    console.log(value, "======>onchange");
-    let oldSizes = [...selectedSize];
-    oldSizes[index] = value;
-    setSelectedSize(oldSizes);
-  };
-
-  const handleQtyFtn = (index, value) => {
-    console.log(value, "======>onchange");
-    let oldQtys = [...selectedQty];
-    // oldQtys.splice(index, 0, value);
-    oldQtys[index] = value;
-    setSelectedQty(oldQtys);
-  };
-
-  const updateItems = async (id) => {
-    let t = await localStorage.getItem("products");
-    t = JSON?.parse(t);
-    t = arr?.filter((m) => m.id != id);
-    localStorage.setItem("products", JSON.stringify(t));
-    setArr(t);
-    setCountBag();
-  };
+  // console.log(bagArr);
+  // console.log(arr);
 
   return (
     <div
@@ -103,22 +75,10 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag, countBag }) => {
           <span className="close">&times;</span>
           <div className="flex">Your Cart</div>
           <div className="content">
-            {arr?.map((m, i) => {
+            {cartItems.map((m, i) => {
               return (
                 <>
-                  <Card
-                    key={m.id + i}
-                    ind={i}
-                    product={m}
-                    updateItems={updateItems}
-                    handleQtyFtn={handleQtyFtn}
-                    handleSizeFtn={handleSizeFtn}
-                    selectedQty={selectedQty}
-                    selectedSize={selectedSize}
-                    setSelectedQty={setSelectedQty}
-                    setSelectedSize={setSelectedSize}
-                    setCountBag={setCountBag}
-                  />
+                  <Card key={m?.id + i} ind={i} product={m} />
                 </>
               );
             })}
@@ -127,11 +87,7 @@ const Cart = ({ setSuccessFlag, successFlag, setCountBag, countBag }) => {
           <div className="checkout">
             <p className="total">Total Amount: {findTotalPrice()}</p>
 
-            <Link
-              // id="close-btn"
-              className="checkout-btn"
-              // to="/checkout"
-            >
+            <Link id="close-btn" className="checkout-btn" to="/checkout">
               Checkout
             </Link>
           </div>

@@ -12,7 +12,7 @@ const Card = (props) => {
   image = image[0];
   const [isHovering, setIsHovering] = useState(false);
   let { cat } = useParams();
-  // console.log(cat, "cat i card==========>");
+  // console.log(props, "cat i card==========>");
 
   useEffect(() => {
     console.log("useffect ran");
@@ -20,12 +20,12 @@ const Card = (props) => {
 
   const handleHover = (e) => {
     setIsHovering(true);
-    console.log(isHovering);
+    // console.log(isHovering);
   };
 
   const handleLeave = (e) => {
     setIsHovering(false);
-    console.log(isHovering);
+    // console.log(isHovering);
   };
 
   const handleClick = () => {

@@ -2,13 +2,12 @@ import React, { Component, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Products from "../Products/products";
-import Navbar from "../Navbar/navbar";
-import "./home.css";
+import "./style.css";
 import App from "../Loader/loader";
 import { Link, route, Switch } from "react-router-dom";
 
 const FilterableProducts = (props) => {
-  const { searchText, setCountWishlist } = props;
+  const { searchText } = props;
   const [products, setProducts] = useState([]);
   const [allProds, setAllProds] = useState([]);
   const [loader, setLoader] = useState(true);
@@ -19,7 +18,11 @@ const FilterableProducts = (props) => {
   // console.log(params.cat, "------------->>");
 
   useEffect(() => {
-    fetch(`https://ecommerce-980.herokuapp.com/products/category/${cat}`)
+    let url;
+    if (cat == "male" || cat == "female")
+      url = `https://ecommerce-980.herokuapp.com/products/gender/${cat}`;
+    else url = `https://ecommerce-980.herokuapp.com/products/category/${cat}`;
+    fetch(url) //"http://localhost:6400/products"
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -33,7 +36,6 @@ const FilterableProducts = (props) => {
     const results = allProds.filter((product) =>
       product.title.toLowerCase().includes(searchText)
     );
-
     setProducts(results);
   }, [searchText]);
 
@@ -71,11 +73,7 @@ const FilterableProducts = (props) => {
               />
             </div>
             <div className="products">
-              <Products
-                products={products}
-                setProducts={setProducts}
-                setCountWishlist={setCountWishlist}
-              />
+              <Products products={products} setProducts={setProducts} />
             </div>
           </div>
         </>

@@ -1,34 +1,27 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./navbar.css";
 import logo from "../../images/logo.svg";
 import { MdSearch } from "react-icons/md";
-import { BsFillPersonFill, BsPerson, BsHeart } from "react-icons/bs";
+import { BsPerson, BsHeart } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
 import Cart from "../Cart/cart";
-const Navbar = ({
-  setSearchText,
-  searchText,
-  countBag,
-  countWish,
-  setSuccessFlag,
-  successFlag,
-  setCountBag,
-  setCountWishlist,
-}) => {
-  // const [countBag, setCountBag] = useState(0);
+
+const Navbar = ({ setSearchText, searchText }) => {
+  const [cartFlag, setCartFlag] = useState(false);
+
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const user = useSelector((state) => state.user.user);
+  const items = useSelector((state) => state.cart.items);
+  let countBag = items.length;
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);
-    // const results = allProds.filter((product) =>
-    //   product.title.toLowerCase().includes(searchText)
-    // );
-
-    // setProducts(results);
   };
 
   const openPopup = () => {
-    setSuccessFlag(true);
+    setCartFlag(true);
   };
 
   return (
@@ -42,12 +35,12 @@ const Navbar = ({
         <div className="navbar-left-right">
           <ul>
             <li>
-              <Link className="link" to="#">
+              <Link className="link" to="/male">
                 MEN
               </Link>
             </li>
             <li>
-              <Link className="link" to="#">
+              <Link className="link" to="/female">
                 WOMEN
               </Link>
             </li>
@@ -88,19 +81,14 @@ const Navbar = ({
         <ul>
           <li className="li-flex">
             <BsPerson />
-            <Link className="link" to="#">
-              Profile
+            <Link className="link" to={isAuth ? "/user" : "/profile"}>
+              {isAuth ? user?.name?.firstname : "Profile"}
             </Link>
           </li>
           <li className="li-flex">
             <BsHeart />
-            {/* <span className="bag-count">{count}</span> */}
+
             <Link className="link" to="#" style={{ position: "relative" }}>
-              {countWish > 0 ? (
-                <span className="wish-count">{countWish}</span>
-              ) : (
-                ""
-              )}
               Wishlist
             </Link>
           </li>
@@ -113,12 +101,7 @@ const Navbar = ({
           </li>
         </ul>
       </div>
-      <Cart
-        successFlag={successFlag}
-        setSuccessFlag={setSuccessFlag}
-        setCountBag={setCountBag}
-        countBag={countBag}
-      />
+      {cartFlag && <Cart setSuccessFlag={setCartFlag} successFlag={cartFlag} />}
     </div>
   );
 };

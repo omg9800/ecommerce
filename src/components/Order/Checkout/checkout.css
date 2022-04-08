@@ -1,0 +1,77 @@
+.checkout-container {
+  margin-top: 20vh !important;
+  width: 70vw;
+  margin: auto;
+  display: flex;
+}
+
+.addresses {
+  padding-top: 2%;
+  width: 60%;
+  margin-right: 5%;
+  background-color: #f1f3f6;
+  box-shadow: 0px 0px 2px 2px #f1f3f6;
+}
+
+.address {
+  margin-top: 1vh;
+}
+
+.personal > span {
+  display: inline-block;
+  margin-right: 20px;
+  font-weight: 500;
+}
+
+.address > span {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.addresstype {
+  background-color: white;
+  padding: 2px 4px;
+}
+
+.pin {
+  font-weight: 500;
+}
+
+.address-input {
+  margin-right: 20px;
+}
+.price-detail {
+  padding-top: 2%;
+  width: 35%;
+  text-align: center;
+  background-color: #f1f3f6;
+}
+
+.address-card-checkout {
+  display: flex;
+  padding: 5vh;
+  border-bottom: 1px solid rgb(216, 213, 213);
+}
+
+.bold {
+  margin-bottom: 2vh;
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.total-price {
+  padding: 1vh 2vh;
+}
+.green-text {
+  color: rgb(0, 128, 96);
+  padding: 1vh 2vh;
+}
+
+.center {
+  margin-top: 5vh;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border: none;
+}

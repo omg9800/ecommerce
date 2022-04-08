@@ -1,0 +1,35 @@
+.user-container {
+  /* margin-top: 25vh; */
+  display: flex;
+  height: max-content;
+  width: 70%;
+  margin: 25vh auto 0 auto;
+  justify-content: center;
+  padding-bottom: 15px;
+  /* border: 1px solid #7e7e7e; */
+}
+.user-sidebar {
+  width: 250px;
+  border: 1px solid #7e7e7e;
+  border-bottom: 0;
+  border-right: 0;
+  border-bottom: 1px solid #7e7e7e;
+}
+.user-details {
+  flex-grow: 5;
+  border: 1px solid #7e7e7e;
+  border-bottom: 1px solid grey;
+  height: max-content;
+  min-height: 300px;
+}
+
+.ul-list {
+  font-size: 1rem;
+}
+
+.li-item {
+  margin: 10px 10px 0 25px;
+  color: #292929;
+  text-decoration: none;
+  font-weight: 500;
+}
