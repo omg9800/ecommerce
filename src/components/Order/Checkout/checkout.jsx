@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./checkout.css";
 import { useSelector } from "react-redux";
@@ -75,6 +76,14 @@ function Checkout() {
     <div className="checkout-container">
       <div className="addresses">
         <p className="bold">Delivery Address</p>
+        {!addresses?.length && (
+          <div className="no-address">
+            <h3>No address found!</h3>
+            <Link className="no-address-link" to="/user/addresses">
+              Add Address
+            </Link>
+          </div>
+        )}
         {addresses?.map((m) => {
           return (
             <div

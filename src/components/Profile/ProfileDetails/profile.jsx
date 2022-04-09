@@ -12,7 +12,7 @@ function Profile() {
 
   return (
     <div className="profile-container">
-      <h1>User Details</h1>
+      <h3 className="center-bold">User Details</h3>
       <ul>
         <li id="profile-details">
           <label htmlFor="firstname">FirstName</label>

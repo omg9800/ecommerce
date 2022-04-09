@@ -40,7 +40,7 @@ function Order() {
 
   return (
     <div>
-      <h1>Your Orders</h1>
+      <h3 className="center-bold">Your Orders</h3>
       {orders.map((items, i) => {
         return (
           <ol>

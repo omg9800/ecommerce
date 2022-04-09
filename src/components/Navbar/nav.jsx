@@ -81,7 +81,7 @@ const Navbar = ({ setSearchText, searchText }) => {
         <ul>
           <li className="li-flex">
             <BsPerson />
-            <Link className="link" to={isAuth ? "/user" : "/profile"}>
+            <Link className="link" to={isAuth ? "/user/profile" : "/profile"}>
               {isAuth ? user?.name?.firstname : "Profile"}
             </Link>
           </li>

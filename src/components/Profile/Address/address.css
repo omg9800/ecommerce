@@ -17,9 +17,10 @@
 
 .address-all {
   border-bottom: 1px solid rgb(189, 187, 187);
-  padding: 15px;
+  padding: 50px 15px;
   /* margin-bottom: 10px; */
   font-size: 1.1rem;
+  min-height: 275px;
 }
 
 .address-list {
@@ -55,4 +56,10 @@
 
 .address-lists {
   height: 80%;
+}
+
+.center-bold {
+  text-align: center;
+  margin-top: 10%;
+  margin-bottom: 5%;
 }

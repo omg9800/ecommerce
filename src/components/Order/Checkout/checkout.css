@@ -42,6 +42,7 @@
 }
 .price-detail {
   padding-top: 2%;
+  padding-bottom: 2%;
   width: 35%;
   text-align: center;
   background-color: #f1f3f6;
@@ -74,4 +75,19 @@
   margin-left: 15%;
   margin-right: 15%;
   border: none;
+}
+
+.no-address {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.no-address-link {
+  text-decoration: none;
+  margin-top: 2%;
+  background-color: #c23490;
+  color: white;
+  padding: 5px 15px;
 }

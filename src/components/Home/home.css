@@ -17,12 +17,13 @@
   margin-top: 120px;
 }
 
-.brands-container {
+.category-container {
   width: 94vw;
   display: flex;
   justify-content: space-between;
   overflow-x: hidden;
-  /* margin: 0 3vw 0 3vw; */
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 
 .home-ex-car {

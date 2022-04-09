@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Footer/footer";
 
 function Home() {
-  const [bagArr, setBagArr] = useState([]);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
 
@@ -40,17 +39,17 @@ function Home() {
         </div>
         <div className="home-ex-car">
           <h1>Explore Products by Category</h1>
-          <div className="brands-container">
+          <div className="category-container">
             {categories.map((m) => {
               return <Card cat={m} />;
             })}
           </div>
-          <h1>Explore Products by Brands</h1>
-          <div className="brands-container">
+          {/* <h1>Explore Products by Brands</h1> */}
+          {/* <div className="brands-container">
             {brands.map((m) => {
               return <Card cat={m} />;
             })}
-          </div>
+          </div> */}
         </div>
         <Footer />
       </Route>

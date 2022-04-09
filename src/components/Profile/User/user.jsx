@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import { NavLink, Route, Switch } from "react-router-dom";
 import "./user.css";
 import Profile from "../ProfileDetails/profile";
 import Address from "../Address/address";
@@ -29,34 +29,54 @@ function User(props) {
       <div className="user-sidebar">
         <ul className="ul-list">
           <li>
-            <Link className="li-item" to="/user">
+            <NavLink
+              activeClassName="selected"
+              className="li-item"
+              to="/user/profile"
+            >
               Profile
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="li-item" to="/user/orders">
+            <NavLink
+              activeClassName="selected"
+              className="li-item"
+              to="/user/orders"
+            >
               My Orders
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="li-item" to="/user/wishlist">
+            <NavLink
+              activeClassName="selected"
+              className="li-item"
+              to="/user/wishlist"
+            >
               Wishlist
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="li-item" to="/user/addresses">
+            <NavLink
+              activeClassName="selected"
+              className="li-item"
+              to="/user/addresses"
+            >
               Addresses
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="li-item" to="/user/cards">
+            <NavLink
+              activeClassName="selected"
+              className="li-item"
+              to="/user/cards"
+            >
               Saved Cards
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="li-item" to="/" onClick={logout}>
+            <NavLink className="li-item" to="/" onClick={logout}>
               Logout
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -66,16 +86,16 @@ function User(props) {
             <Order />
           </Route>
           <Route path="/user/wishlist" exact>
-            <h1>wish</h1>
+            <h3 className="center-bold">Wishlists</h3>
           </Route>
-          <Route path="/user" exact>
+          <Route path="/user/profile" exact>
             <Profile />
           </Route>
           <Route path="/user/addresses" exact>
             <Address />
           </Route>
           <Route path="/user/cards" exact>
-            <h1>cards</h1>
+            <h3 className="center-bold">Cards</h3>
           </Route>
         </Switch>
       </div>

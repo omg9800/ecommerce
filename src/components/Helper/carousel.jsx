@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import c1 from "../../images/c1.jpg";
@@ -9,14 +8,13 @@ import "./helper.css";
 export default () => {
   return (
     <Carousel
-      // responsive={responsive}
       showStatus={false}
-      // showDots={true}
+      showDots={true}
       showArrows={false}
       autoPlay={true}
-      // autoPlaySpeed={300}
+      autoPlaySpeed={300}
       infinite={true}
-      // focusOnSelect={true}
+      focusOnSelect={true}
       // transitionDuration={1000}
       showThumbs={false}
     >

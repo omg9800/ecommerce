@@ -22,7 +22,7 @@ const FilterableProducts = (props) => {
     if (cat == "male" || cat == "female")
       url = `https://ecommerce-980.herokuapp.com/products/gender/${cat}`;
     else url = `https://ecommerce-980.herokuapp.com/products/category/${cat}`;
-    fetch(url) //"http://localhost:6400/products"
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
