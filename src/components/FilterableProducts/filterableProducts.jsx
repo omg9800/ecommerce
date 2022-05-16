@@ -1,10 +1,10 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/sidebar";
 import Products from "../Products/products";
 import "./style.css";
 import App from "../Loader/loader";
-import { Link, route, Switch } from "react-router-dom";
+import apiUrl from "../../services/service";
 
 const FilterableProducts = (props) => {
   const { searchText } = props;
@@ -13,15 +13,14 @@ const FilterableProducts = (props) => {
   const [loader, setLoader] = useState(true);
   const [count, setCount] = useState(0);
   let { cat } = useParams();
-  console.log(cat, "----->==>");
 
   // console.log(params.cat, "------------->>");
 
   useEffect(() => {
     let url;
     if (cat == "male" || cat == "female")
-      url = `https://ecommerce-980.herokuapp.com/products/gender/${cat}`;
-    else url = `https://ecommerce-980.herokuapp.com/products/category/${cat}`;
+      url = `${apiUrl}/products/gender/${cat}`;
+    else url = `${apiUrl}/products/category/${cat}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

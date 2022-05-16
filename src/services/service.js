@@ -1,1 +1,1 @@
-export default "https://ecommerce-980.herokuapp.com";
+export default "https://wearly-api.herokuapp.com";

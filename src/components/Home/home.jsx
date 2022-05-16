@@ -5,10 +5,10 @@ import HomeCarousel from "../Helper/carousel";
 import { Route } from "react-router-dom";
 import "./home.css";
 import Card from "./Card/card";
-import Checkout from "../Order/Checkout/checkout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Footer/footer";
+import apiUrl from "../../services/service";
 
 function Home() {
   const [categories, setCategories] = useState([]);
@@ -18,13 +18,13 @@ function Home() {
   let userId = user?._id;
 
   useEffect(async () => {
-    fetch("https://ecommerce-980.herokuapp.com/products/categories")
+    fetch(`${apiUrl}/products/categories`)
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
       });
 
-    fetch("https://ecommerce-980.herokuapp.com/products/brands")
+    fetch(`${apiUrl}/products/brands`)
       .then((res) => res.json())
       .then((data) => {
         setBrands(data);
