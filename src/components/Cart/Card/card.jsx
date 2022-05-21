@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./card.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeCart, editCart } from "../../../store/cart";
+import { TiDelete } from "react-icons/ti";
+import { IconContext } from "react-icons";
 
 const Card = (props) => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user);
+  // const user = useSelector((state) => state.user.user);
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const userId = user._id;
+
   let { title, description, price, image, size, _id } = props.product;
   let { quantity } = props?.product;
   let allSize = [32, 34, 36, 38];
@@ -108,7 +113,20 @@ const Card = (props) => {
         </div>
       </div>
       <div className="remove">
-        <button onClick={deleteCart}>X</button>
+        {/* <button onClick={deleteCart}>
+          <TiDelete />
+        </button> */}
+        <IconContext.Provider
+          value={{
+            color: "red",
+            size: "1.5em",
+            className: "global-class-name",
+          }}
+        >
+          <div onClick={deleteCart}>
+            <TiDelete />
+          </div>
+        </IconContext.Provider>
       </div>
     </div>
   );

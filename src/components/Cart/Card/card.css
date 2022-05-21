@@ -62,6 +62,10 @@ select {
   margin-right: 10px;
 }
 
+.remove {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 480px) {
   .cart-card-container {
     width: 100%;
