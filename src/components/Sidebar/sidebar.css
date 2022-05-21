@@ -4,7 +4,10 @@
   width: 270px;
   padding: 15px 0 15px 0px;
   height: max-content;
+}
+.filter {
   border-right: 1px solid rgba(167, 164, 164, 0.096);
+  border-left: 1px solid rgba(167, 164, 164, 0.096);
 }
 
 .filter-by-gender {

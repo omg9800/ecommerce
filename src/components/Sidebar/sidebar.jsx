@@ -57,7 +57,7 @@ const Sidebar = ({ products, setProducts, setFlag, flag, allProds }) => {
   return (
     <div className="sidebar-container">
       <div className="filter">
-        <h1>Filter</h1>
+        <h1 className="head-filter">Filter</h1>
         <div className="filter-by-gender">
           <p className="sub-heading">Gender</p>
           <ul>
